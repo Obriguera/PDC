@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiSuperEjemplo</title>
+    <link rel="stylesheet" href="./estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<body class="cuerpo">
+    <h1>Cafetería Rocky</h1>
+
+    <div class="carta col-8">
+        <div class="card col-4">
+            <h2>Nuestros cafés</h2>
+            <ul>
+                <li>Café Creed (Café negro)</li>
+                <li>Pavo quemado</li>
+                <li>Rocky sos un fracasado</li>
+                <li>Eye of the tiger</li>
+                <li>Hearts on fire</li>
+                <li>Burning Heart</li>
+            </ul>
+        </div>
+
+        <div class="card col-4">
+            <h2>Nuestros alimentos</h2>
+            <ul>
+                <li>Emparedado de nudillos</li>
+                <li>Tostado a la piedra</li>
+                <li>Otra cosa</li>
+                <li>Otra cosa</li>
+                <li>Otra cosa</li>
+            </ul>
+        </div>
+
+        <div class="card col-4" style="width: 18rem;">
+            <img src="./rockypuño.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Genera tu código de descuento</h5>
+                <p id="display-codigo" class="card-text"></p>
+                <button id="boton" class="btn btn-success">Generar</button>
+        </div>
+    </div>
+
+    </div>
+    
+    <br>
+
+    <div id="carouselRocky" class="carousel slide carousel-rocky col-8" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselRocky" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselRocky" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselRocky" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="carousel-slide slide-1">
+                    <h3>Café Creed</h3>
+                    <p>Intenso, clásico y listo para arrancar el día.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-slide slide-2">
+                    <h3>Especialidades Rocky</h3>
+                    <p>Combos para entrenar, estudiar o pasar la tarde.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-slide slide-3">
+                    <h3>Promociones del ring</h3>
+                    <p>Descuentos semanales y sabores que pegan fuerte.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselRocky" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselRocky" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <div class="info col-8">
+        <h4>Nuestra misión</h4>
+        <p>Servir café y comida, no es que hagamos mucho más que eso jajaj</p>
+    </div>
+
+    <footer class="pie col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <a href="https://Instagram.com">Instagram</a>
+        <a href="https://Tiktok.com">Tiktok</a>
+        <a href="https://Youtube.com">Youtube</a>
+        <a href="https://LinkedIn.com">LinkedIn</a>
+    </footer>
+
+    <script src="./interactividad.js"></script>
+</body>
+</html>

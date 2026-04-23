@@ -1,0 +1,66 @@
+.cuerpo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+}
+
+.card{
+    border-radius: 10px;
+}
+
+.carta{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+  .carta{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+}
+}
+
+.carta div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.carousel{
+ background-color: rgb(152, 196, 196);
+ padding: 100px;
+ border-radius: 10px;
+}
+
+.info{
+    margin: 20px;
+    text-align: left;
+}
+
+.pie{
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: red;
+}
+
+.pie a:hover {
+    background-color: grey  ;
+    color: white;
+    border-radius: 10px;
+}
