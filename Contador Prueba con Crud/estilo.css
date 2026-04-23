@@ -1,4 +1,17 @@
-.cuerpo{
+:root {
+    --bg-cream: #f8f3e8;
+    --bg-soft: #efe2cc;
+    --coffee-dark: #3d2c24;
+    --coffee-mid: #6b4f3f;
+    --coffee-light: #b08968;
+    --accent: #2f7d63;
+    --accent-strong: #256a54;
+    --text-main: #2a201b;
+    --text-soft: #5d4a40;
+    --panel: #fffaf0;
+}
+
+.cuerpo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,13 +19,19 @@
     min-height: 100vh;
     height: 100%;
     margin: 0;
+    color: var(--text-main);
+    background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
 }
 
-.card{
-    border-radius: 10px;
+h1, h2, h3, h4, h5 {
+    color: var(--coffee-dark);
 }
 
-.carta{
+p, li {
+    color: var(--text-soft);
+}
+
+.carta {
     display: flex;
     flex-direction: row;
     width: max-content;
@@ -20,16 +39,16 @@
 }
 
 @media (max-width: 600px) {
-  .carta{
-    display: flex;
-    flex-direction: column;
-    width: max-content;
-    justify-content: center;
-    align-items: center;
-}
+    .carta {
+        display: flex;
+        flex-direction: column;
+        width: max-content;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-.carta div{
+.carta div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,30 +56,58 @@
     text-align: center;
 }
 
-
-.carousel{
- background-color: rgb(152, 196, 196);
- padding: 100px;
- border-radius: 10px;
+.card {
+    border-radius: 10px;
+    background-color: var(--panel);
+    border: 1px solid #d8c3aa;
+    box-shadow: 0 8px 20px rgba(61, 44, 36, 0.12);
 }
 
-.info{
+#display-codigo {
+    color: var(--coffee-mid);
+    font-weight: 700;
+}
+
+.btn-success {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background-color: var(--accent-strong);
+    border-color: var(--accent-strong);
+}
+
+.carousel {
+    background: linear-gradient(135deg, #e6d4bc 0%, #d2b48c 100%);
+    padding: 100px;
+    border-radius: 10px;
+}
+
+.info {
     margin: 20px;
     text-align: left;
+    background-color: rgba(255, 250, 240, 0.7);
+    border: 1px solid #d8c3aa;
 }
 
-.pie{
+.pie {
     margin-top: auto;
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
-    background-color: red;
+    background-color: var(--coffee-dark);
+}
+
+.pie a {
+    color: #f5e9d8;
 }
 
 .pie a:hover {
-    background-color: grey  ;
-    color: white;
+    background-color: var(--coffee-light);
+    color: #1f1713;
     border-radius: 10px;
 }
