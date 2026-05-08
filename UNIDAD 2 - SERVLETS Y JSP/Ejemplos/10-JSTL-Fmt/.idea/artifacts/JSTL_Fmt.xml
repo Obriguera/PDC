@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="JSTL-Fmt">
+    <output-path>$PROJECT_DIR$/out/artifacts/JSTL_Fmt</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="JSTL-Fmt" />
+          <element id="extracted-dir" path="$MAVEN_REPOSITORY$/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.1/jakarta.servlet.jsp.jstl-api-3.0.1.jar" path-in-jar="/" />
+          <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/glassfish/web/jakarta.servlet.jsp.jstl/3.0.1/jakarta.servlet.jsp.jstl-3.0.1.jar" path-in-jar="/" />
+          <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/webjars/bootstrap/5.3.8/bootstrap-5.3.8.jar" path-in-jar="/" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
