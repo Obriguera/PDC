@@ -1,0 +1,21 @@
+.globo{
+    background-color: aqua;
+    border-radius: 50%;
+    min-height: 50px;
+    max-width: 50px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    margin: 8px;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.globo.pop {
+    color: #444;
+    border-radius: 8px;
+}
