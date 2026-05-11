@@ -23,8 +23,33 @@ const prioridadYnotif = () =>{
 const desactivarEmail = () =>{
 
     if(radioNO.checked){
-        
+        campoEmail.disabled = true;
+        campoEmail.value = "";
+    }
+    if(radioSI.checked){
+        campoEmail.disabled = false;
+    }
+}
+
+function gestionarEstado(link, index) {
+    const fila = link.closest('tr');
+    const esDescartar = link.innerText === 'Descartar';
+
+    if (esDescartar) {
+        // Solicitar confirmación [cite: 22]
+        if (confirm("¿Está seguro de que desea descartar este evento?")) {
+            fila.classList.add('fila-descartada'); // Aplicar rojo y tachado
+            link.innerText = 'Recuperar'; // Cambiar link
+            actualizarEstadoEnServidor(index, true);
+        }
+    } else {
+        // Lógica de Recuperar [cite: 24]
+        fila.classList.remove('fila-descartada');
+        link.innerText = 'Descartar';
+        actualizarEstadoEnServidor(index, false);
     }
 }
 
 prioridades.addEventListener("change", prioridadYnotif);
+radioNO.addEventListener("change", desactivarEmail);
+radioSI.addEventListener("change", desactivarEmail);

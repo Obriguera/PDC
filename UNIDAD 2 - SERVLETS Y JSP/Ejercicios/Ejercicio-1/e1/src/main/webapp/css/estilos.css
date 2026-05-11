@@ -1,0 +1,6 @@
+/* Estilos particulares [cite: 2] */
+.fila-descartada td,
+.fila-descartada th {
+    color: red !important;
+    text-decoration: line-through;
+}

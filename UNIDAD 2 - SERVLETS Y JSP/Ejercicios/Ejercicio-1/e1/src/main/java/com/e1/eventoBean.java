@@ -2,18 +2,9 @@ package com.e1;
 
 import java.util.Date;
 
-public class evento {
+public class eventoBean {
 
-
-    public evento() {
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public eventoBean() {
     }
 
     public String getPrioridad() {
@@ -32,11 +23,11 @@ public class evento {
         this.descripcion = descripcion;
     }
 
-    public boolean isNotificar() {
+    public String getNotificar() {
         return notificar;
     }
 
-    public void setNotificar(boolean notificar) {
+    public void setNotificar(String notificar) {
         this.notificar = notificar;
     }
 
@@ -48,10 +39,28 @@ public class evento {
         this.email = email;
     }
 
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
     private String prioridad;
     private String descripcion;
-    private boolean notificar;
+    private String notificar;
     private String email;
-    private Date fecha;
+    private String fecha;
+
+    public boolean isDescartado() {
+        return descartado;
+    }
+
+    public void setDescartado(boolean descartado) {
+        this.descartado = descartado;
+    }
+
+    private boolean descartado;
 
 }

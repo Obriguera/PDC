@@ -1,0 +1,22 @@
+body {
+    background-color: #a0a0a0; /* Fondo gris pedido */
+    font-family: Verdana, Arial;
+    font-size: 20pt; /* Texto general */
+}
+
+.cuadro-rojo {
+    width: 120px;
+    height: 100px;
+    background-color: #F00;
+    color: #FFF;
+    font-size: 60pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+button {
+    font-size: 10pt; /* Botón más chico según consigna */
+    border: 1px solid #000;
+}
