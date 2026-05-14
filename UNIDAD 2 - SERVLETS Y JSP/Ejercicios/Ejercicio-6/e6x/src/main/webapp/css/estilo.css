@@ -1,0 +1,14 @@
+.bien {
+    color: #000; /* Negro para aciertos */
+    list-style: none;
+}
+
+.mal {
+    color: #F00;
+    list-style: none;
+}
+
+li {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
