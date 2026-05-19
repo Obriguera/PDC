@@ -1,0 +1,26 @@
+.ganado{
+    background-color: green !important;
+}
+
+.perdido{
+    background-color: red !important;
+}
+
+/* Asegura que el contenedor de resultados no esté oculto de forma que rompa el flex */
+#iResultados:not(.d-none) {
+    display: flex !important; /* Fuerza el flex cuando se muestra */
+    flex-direction: row;      /* Asegura que sea horizontal */
+}
+
+/* Margen de 10px entre las columnas que pide el documento */
+#iContenedorForm,
+.columna-resultado,
+.columna-estadistica {
+    margin: 10px;
+}
+
+/* Evita que la tabla o el form ocupen todo el ancho */
+.table-prode, #iContenedorForm {
+    width: auto;
+}
+
