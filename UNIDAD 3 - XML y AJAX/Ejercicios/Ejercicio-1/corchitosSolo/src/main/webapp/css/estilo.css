@@ -1,0 +1,22 @@
+table{
+    background-color: #FFF;
+    border-color: #000;
+    border-width: 400px;
+    font-family: Verdana, serif;
+}
+
+table thead{
+    background-color: #C0C0C0;
+    justify-content: left;
+}
+
+th input {
+    border-color: #000;
+    font-family: Verdana, serif;
+}
+
+.eliminado{
+    color: red !important;
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
