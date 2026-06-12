@@ -1,0 +1,77 @@
+package com.e2.servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.*;
+
+@WebServlet("/EjemploCallableStatement")
+public class EjemploCallableStatementServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        String codBarra = req.getParameter("codBarra");
+        // El carrito puede venir de la sesión o ser null/0 al principio
+        Integer nroCarrito = (req.getSession().getAttribute("nroCarrito") != null) ? (Integer) req.getSession().getAttribute("nroCarrito") : 0;
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            
+            // La sintaxis requiere la palabra clave 'call' y los parámetros correspondientes
+            String sqlCall = "{call dbo.ins_producto_carrito(?, ?)}";
+
+            try (Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:14330;databaseName=pdc;encrypt=false", "sa", "123");
+                 CallableStatement stmt = conn.prepareCall(sqlCall)) {
+                
+                // 1. ACTIVAR TRANSACCIÓN MANUAL
+                conn.setAutoCommit(false);
+
+                try {
+                    // 2. CONFIGURAR PARÁMETRO DE ENTRADA / SALIDA (OUTPUT)
+                    if (nroCarrito == 0) {
+                        stmt.setNull(1, Types.INTEGER);
+                    } else {
+                        stmt.setInt(1, nroCarrito);
+                    }
+                    // Informamos a JDBC que la posición 1 registrará un valor de salida desde la base de datos
+                    stmt.registerOutParameter(1, Types.INTEGER);
+
+                    // 3. CONFIGURAR PARÁMETRO DE ENTRADA ESTÁNDAR
+                    stmt.setString(2, codBarra);
+
+                    // 4. EJECUTAR Y LEER EL RESULTSET INTERNO DEL SP
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            // Capturamos los datos devueltos por el SELECT del SP
+                            int nroDetalle = rs.getInt("nroDetalle");
+                            String nomProducto = rs.getString("nomProducto");
+                            double precio = rs.getDouble("precio");
+                        }
+                    }
+
+                    // 5. CAPTURAR EL VALOR GENERADO POR EL PARÁMETRO OUTPUT
+                    // Importante: Se lee SIEMPRE después de haber consumido el ResultSet por completo
+                    int nuevoNroCarrito = stmt.getInt(1);
+                    req.getSession().setAttribute("nroCarrito", nuevoNroCarrito);
+
+                    // 6. CONSOLIDAR TRANSACCIÓN
+                    conn.commit();
+                    resp.setStatus(200);
+
+                } catch (SQLException e) {
+                    // 7. DESHACER TRANSACCIÓN
+                    conn.rollback();
+                    throw e;
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            resp.setStatus(400);
+            // Esto captura directamente los mensajes personalizados lanzados por 'raiserror' en SQL Server
+            resp.getWriter().write(e.getMessage());
+        }
+    }
+}

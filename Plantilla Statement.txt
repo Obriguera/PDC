@@ -1,0 +1,40 @@
+package com.e2.servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.*;
+
+@WebServlet("/EjemploStatement")
+public class EjemploStatementServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            
+            String querySql = "SELECT columna1, columna2 FROM dbo.tabla (nolock) ORDER BY columna1";
+
+            // try-with-resources: Inicializa y cierra automáticamente Connection y Statement
+            try (Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:14330;databaseName=pdc;encrypt=false", "sa", "123");
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(querySql)) {
+                
+                while (rs.next()) {
+                    // Mapeo tradicional a variables o Beans
+                    String col1 = rs.getString("columna1");
+                    int col2 = rs.getInt("columna2");
+                }
+            }
+            
+            // req.setAttribute("lista", lista);
+            // req.getRequestDispatcher("/vista.jsp").forward(req, resp);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            resp.setStatus(400);
+            resp.getWriter().write("Error en Statement: " + e.getMessage());
+        }
+    }
+}

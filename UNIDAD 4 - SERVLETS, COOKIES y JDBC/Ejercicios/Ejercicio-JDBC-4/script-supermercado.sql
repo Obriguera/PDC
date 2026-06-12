@@ -145,7 +145,7 @@ go
 /* ------------------------------------------------
    Consulta de productos del carrito
    ------------------------------------------------ */
-declare @nro_carrito integer = 1
+declare @nro_carrito integer = 2
 
 select nroDetalle  = d.nro_detalle,
        codBarra    = p.cod_barra,
@@ -157,3 +157,5 @@ select nroDetalle  = d.nro_detalle,
  where d.nro_carrito = @nro_carrito
  order by d.fecha_hora_registro
 go
+
+SELECT * FROM carritos

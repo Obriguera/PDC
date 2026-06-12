@@ -1,0 +1,60 @@
+package com.e2.servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.*;
+
+@WebServlet("/EjemploPreparedStatement")
+public class EjemploPreparedStatementServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        // Simulación de parámetros levantados del request o AJAX
+        String parametro1 = req.getParameter("param1"); 
+        int parametro2 = Integer.parseInt(req.getParameter("param2"));
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            
+            String sqlModificacion = "DELETE FROM dbo.tabla WHERE col1 = ? AND col2 = ?";
+
+            try (Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:14330;databaseName=pdc;encrypt=false", "sa", "123");
+                 PreparedStatement stmt = conn.prepareStatement(sqlModificacion)) {
+                
+                // 1. ACTIVAR TRANSACCIÓN MANUAL
+                conn.setAutoCommit(false);
+
+                try {
+                    // 2. SETEO DE PARÁMETROS (El orden de los '?' de izquierda a derecha)
+                    stmt.setString(1, parametro1);
+                    stmt.setInt(2, parametro2);
+
+                    // Opción A: Ejecución directa de una única operación
+                    stmt.executeUpdate();
+                    
+                    /* // Opción B: Si es un bucle/lote (Batch) descomentar esto:
+                    stmt.addBatch();
+                    stmt.executeBatch();
+                    */
+
+                    // 3. CONSOLIDAR CAMBIOS
+                    conn.commit();
+                    resp.setStatus(200);
+
+                } catch (SQLException e) {
+                    // 4. DESHACER CAMBIOS ANTE ERRORES INTERNOS
+                    conn.rollback();
+                    throw e; // Lanza el error al catch general externo
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            resp.setStatus(400);
+            resp.getWriter().write("Error en PreparedStatement: " + e.getMessage());
+        }
+    }
+}
